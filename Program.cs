@@ -19,26 +19,50 @@ namespace P7_Ibarra
 
         static void Main(string[] args)
         {
+            //Variable
+
+
             //Objeto de registro
-            Datos_Persona datos_Persona = new Datos_Persona();
-            //Ingresar Datos de la persona
-                //Nombre Completo
-                Console.Write("Ingrese su Nombre Completo: ");
-                datos_Persona.NombreCompleto = Console.ReadLine();
-                //Fecha de nacimiento
-                Console.Write("Ingrese su fecha de nacimiento con este formato DD/MM/YYYY: ");  
-                string FechaNacimientostring = Console.ReadLine();  
-                DateTime FechaNacimientoDate = DateTime.Now;
-                Console.WriteLine(FechaNacimientostring);
-                //Edad
+            Datos_Persona [] Datos_Persona = new Datos_Persona[50];
+        while (Opción == 1)
+        {
+            //Ingresar el número de personas
+            Console.Write("Ingrese el número de personas: ");
+            int NumeroPersonas = int.Parse(Console.ReadLine());
+            if(NumeroPersonas < 50)
+            {
+                //Ingresar Datos de la persona
+                Console.WriteLine("Ingrese los datos de la persona {0}", i + 1);
+                    //Nombre Completo
+                    Console.Write("Ingrese su Nombre Completo: ");
+                    Datos_Persona[i].NombreCompleto = Console.ReadLine();
 
+                    //Fecha de nacimiento
+                    Console.Write("Ingrese su fecha de nacimiento con este formato DD/MM/YYYY: ");  
+                    Datos_Persona[i].FechaNacimiento = DateTime.Parse(Console.ReadLine());  
+                    DateTime FechaNacimientoDate = DateTime.Now;
 
-                //Lugar de Nacimiento
-                Console.Write("Ingrese su lugar de nacimiento con el siguiente formato (Municipio, Estado): ");
-                datos_Persona.LugarNacimiento = Console.ReadLine();
+                    //Edad
+                    DateTime Hoy = DateTime.Now;
+                    Timespan Diferencia = Hoy - FechaNacimiento;
+                    Datos_Persona[i].Edad = Diferencia.Days / 365;
+
+                    //Lugar de Nacimiento
+                    Console.Write("Ingrese su lugar de nacimiento con el siguiente formato (Municipio, Estado): ");
+                    Datos_Persona.LugarNacimiento = Console.ReadLine();
+            }
+            else if(NumeroPersonas > 50)
+            {
+                Console.WriteLine("El número de personas no puede ser mayor a 50");
+            }
+        }
 
             //Desplegar datos
-
+            for (int j = 0; j < i; j++)
+            {
+                Console.WriteLine(NombreCompleto \t FechaNacimiento \t Edad \t LugarNacimiento);
+                Console.Write();
+            }
         }
     }
 }
